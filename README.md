@@ -4,7 +4,7 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 
 ## Estrutura do Repositório
 
-- **ASMP0600.ASM**: Programa clássico "Hello World" utilizando a macro WTO.
+- **[ASMP0600.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0600.ASM)**: Programa clássico "Hello World" utilizando a macro WTO.
 
 ## Como Usar
 
@@ -21,8 +21,8 @@ Para dúvidas ou sugestões, entre em contato pelo perfil do GitHub ou do [Linke
 Welcome to my repository of Assembly codes developed during the "Assembly for Mainframe" course at INEFE. Here, you will find all the codes we've created throughout the course, from basic concepts to more advanced applications.
 
 ## Repository Structure
+- **[ASMP0600.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0600.ASM)**: Classic "Hello World" program using the WTO macro.
 
-- **ASMP0600.ASM**: Classic "Hello World" program using the WTO macro.
 
 ## How to Use
 
