@@ -1,4 +1,4 @@
-🇧🇷 # Repositório de Códigos Assembly para Mainframe
+# 🇧🇷 Repositório de Códigos Assembly para Mainframe
 
 Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso "Assembly for Mainframe" no INEFE. Aqui, você encontrará todos os códigos que elaboramos ao longo do curso, desde os conceitos básicos até aplicações mais avançadas.
 
@@ -19,12 +19,11 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 
 Para dúvidas ou sugestões, entre em contato pelo perfil do GitHub ou do [LinkedIn](http://www.linkedin.com/in/fmrqs/).
 
-🇺🇸 # Assembly for Mainframe Code Repository
+# 🇺🇸 Assembly for Mainframe Code Repository
 
 Welcome to my repository of Assembly codes developed during the "Assembly for Mainframe" course at INEFE. Here, you will find all the codes we've created throughout the course, from basic concepts to more advanced applications.
 
 ## Repository Structure
-- **[ASMP0600.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0600.ASM)**: Classic "Hello World" program using the WTO macro.
 - **[ASMP0600.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0600.ASM)**: Classic "Hello World" program using the WTO macro.
 - **[ASMP0601.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0601.ASM)**: Creating a data area and performs a PUT it into a data set.
 - **[ASMP0602.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0602.ASM)**: Creating a data area, which receives a text (up to 20 bytes) via PARM and performs a PUT of it into a data set.
