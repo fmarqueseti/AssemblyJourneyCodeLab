@@ -1,35 +1,50 @@
 ***********************************************************************
-* OBJETIVOS: ESCREVER A MENSAGEM HELLO WORLD NO CONSOLE
+* OBJETIVOS: CRIACAO DE UMA AREA DE DADOS, REALIZAR UM PUT DA MESMA EM
+*            UM DATA SET
 ***********************************************************************
-* PROCEDIMENTOS DE INICIALIZAÇÃO DO PROGRAMA (LINKAGE CONVENTION)
+* PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0600 AMODE 31
-ASMP0600 RMODE 24
-ASMP0600 CSECT
+ASMP0601 AMODE 31
+ASMP0601 RMODE 24
+ASMP0601 CSECT
          STM   R14,R12,12(13)
-         USING ASMP0600,R10
+         USING ASMP0601,R10
          LR    R10,R15
-         ST    R13,ASMP0600_SAVE_AREA+4
-         LA    R8,ASMP0600_SAVE_AREA
+         ST    R13,ASMP0601_SAVE_AREA+4
+         LA    R8,ASMP0601_SAVE_AREA
          ST    R8,8(R13)
          LR    R13,R8
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
-         WTO   'HELLO WORLD'
+         OPEN  (SAIDA,OUTPUT)
+         PUT   SAIDA,MSG
+         CLOSE SAIDA
 ***********************************************************************
 * PROCEDIMENTOS DE FINALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0600_MODULO_RETORNA_OK    DS  0H
-         L     R13,ASMP0600_SAVE_AREA+4
+ASMP0601_MODULO_RETORNA_OK    DS  0H
+         L     R13,ASMP0601_SAVE_AREA+4
          LM    R14,R12,12(R13)
          LA    R15,0
          BR    R14
 ***********************************************************************
 * DEFINICAO DE AREAS DE DADOS
 ***********************************************************************
-ASMP0600_SAVE_AREA              DS  18F
+MSG      DS    0CL80
+         DC    CL1' '
+         DC    CL19'*** HELLO WORLD ***'
+         DC    60CL1' '
+*        
+SAIDA    DCB   DDNAME=SAIDA,                                           *
+               DSORG=PS,                                               *
+               MACRF=PM,                                               *
+               LRECL=80,                                               *
+               BLKSIZE=4000,                                           *
+               RECFM=FBA
 *
+ASMP0601_SAVE_AREA              DS  18F
+*         
 R0       EQU   0
 R1       EQU   1
 R2       EQU   2
@@ -49,4 +64,4 @@ R15      EQU  15
 *
          LTORG
 *
-         END
+         END                                                            

@@ -1,34 +1,52 @@
 ***********************************************************************
-* OBJETIVOS: ESCREVER A MENSAGEM HELLO WORLD NO CONSOLE
+* OBJETIVOS: CRIACAO DE UMA AREA DE DADOS, RECEBER UM TEXTO, DE ATE 20
+*            BYTES, VIA PARM E REALIZAR UM PUT UM DATA SET
 ***********************************************************************
-* PROCEDIMENTOS DE INICIALIZAÇÃO DO PROGRAMA (LINKAGE CONVENTION)
+* PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0600 AMODE 31
-ASMP0600 RMODE 24
-ASMP0600 CSECT
+ASMP0602 AMODE 31
+ASMP0602 RMODE 24
+ASMP0602 CSECT
          STM   R14,R12,12(13)
-         USING ASMP0600,R10
+         USING ASMP0602,R10
          LR    R10,R15
-         ST    R13,ASMP0600_SAVE_AREA+4
-         LA    R8,ASMP0600_SAVE_AREA
+         ST    R13,ASMP0602_SAVE_AREA+4
+         LA    R8,ASMP0602_SAVE_AREA
          ST    R8,8(R13)
          LR    R13,R8
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
-         WTO   'HELLO WORLD'
+         L     R3,0(,R1)
+         LA    R4,2(,R3)
+         MVC   MSGOUT,0(R4)
+         OPEN  (SAIDA,OUTPUT)
+         PUT   SAIDA,MSG
+         CLOSE SAIDA
 ***********************************************************************
 * PROCEDIMENTOS DE FINALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0600_MODULO_RETORNA_OK    DS  0H
-         L     R13,ASMP0600_SAVE_AREA+4
+ASMP0602_MODULO_RETORNA_OK    DS  0H
+         L     R13,ASMP0602_SAVE_AREA+4
          LM    R14,R12,12(R13)
          LA    R15,0
          BR    R14
 ***********************************************************************
 * DEFINICAO DE AREAS DE DADOS
 ***********************************************************************
-ASMP0600_SAVE_AREA              DS  18F
+MSG      DS    0CL80
+         DC    CL1' '
+MSGOUT   DS    CL20
+         DC    59CL1' '
+*
+SAIDA    DCB   DDNAME=SAIDA,                                           *
+               DSORG=PS,                                               *
+               MACRF=PM,                                               *
+               RECFM=FBA,                                              *
+               LRECL=80,                                               *
+               BLKSIZE=4000
+*
+ASMP0602_SAVE_AREA              DS  18F
 *
 R0       EQU   0
 R1       EQU   1
