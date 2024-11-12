@@ -55,9 +55,15 @@ LER_N2   EQU   *
          ED    RESTOO,RESULT
          PUT   SAIDA,MSGRESTO
          B     FIMARQ
+***********************************************************************
+* ROTINA DE ABEND
+***********************************************************************
 ROT_ABND EQU   *
          MVC   MSG(12),=C'OPEN FALHOU.'
          PUT   SAIDA,MSG
+***********************************************************************
+* FINALIZA (FECHA) OS DATASETS
+***********************************************************************         
 FIMARQ   EQU   *
          CLOSE SAIDA
          CLOSE ENTRADA
