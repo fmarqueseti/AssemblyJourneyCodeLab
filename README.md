@@ -8,6 +8,8 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 - **[ASMP0601.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0601.ASM)**: Criação de uma área de dados e PUT da mesma em um data set.
 - **[ASMP0602.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0602.ASM)**: Criação de uma área de dados, que recebe um texto (de até 20 bytes) via PARM e realiza um PUT da mesma em um data set.
 - **[ASMP0603.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0603.ASM)**: Criação de uma área de dados, que recebe um texto via SYSIN e realiza um laço para dar um PUT da mesma em um data set. Extração das rotinas de linkage convention para macros que criamos.
+- **[ASMP0604.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0604.ASM)**: Recebe dois números, no formato caracter, do SYSIN, realiza a conversão para binário compactado (PACK), realiza soma (AP) e subtração (SP), formata e realiza um PUT dos resultados em um data set.
+- **[ASMP0605.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0605.ASM)**: Recebe dois números, no formato caracter, do SYSIN, realiza a conversão para binário compactado (PACK), realiza multiplicação (MP) e divisão (DP), formata e realiza um PUT dos resultados em um data set, inclundo o resto da divisão.
 
 ## Como Usar
 
@@ -28,6 +30,8 @@ Welcome to my repository of Assembly codes developed during the "Assembly for Ma
 - **[ASMP0601.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0601.ASM)**: Creating a data area and performs a PUT it into a data set.
 - **[ASMP0602.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0602.ASM)**: Creating a data area, which receives a text (up to 20 bytes) via PARM and performs a PUT of it into a data set.
 - **[ASMP0603.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0603.ASM)**: Creating a data area, which receives a text via SYSIN and performs a loop to PUT it into a data set. Extraction of the linkage convention routines for created macros.
+- **[ASMP0604.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0604.ASM)**: Receives two character-format numbers from SYSIN, converts them to packed binary (PACK), performs addition (AP) and subtraction (SP), formats the results, and executes a PUT operation to store the results in a dataset.
+- **[ASMP0605.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0605.ASM)**:  Receives two character-format numbers from SYSIN, converts them to packed binary (PACK), performs multiplication (MP) and division (DP), formats the results, and executes a PUT operation to store the results in a dataset, including the remainder of the division.
 
 ## How to Use
 

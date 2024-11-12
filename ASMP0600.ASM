@@ -1,7 +1,7 @@
 ***********************************************************************
 * OBJETIVOS: ESCREVER A MENSAGEM HELLO WORLD NO CONSOLE
 ***********************************************************************
-* PROCEDIMENTOS DE INICIALIZAÇÃO DO PROGRAMA (LINKAGE CONVENTION)
+* PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
 ASMP0600 AMODE 31
 ASMP0600 RMODE 24
