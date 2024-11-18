@@ -1,6 +1,6 @@
 ***********************************************************************
 * OBJETIVOS: RECEBE DOIS NUMEROS (NO FORMATO CARACTER) DO SYSIN,
-*            REALIZA A CONVERSAO PARA BINARIO COMPACTADO (PACK), SOMA
+*            REALIZA A CONVERSAO PARA DECIMAL COMPACTADO (PACK), SOMA
 *            (AP), SUBTRAI (SP), FORMATA E REALIZA UMA SAIDA (PUT)
 *            EM DATASET.
 ***********************************************************************
@@ -28,7 +28,7 @@ LER_N2   EQU   *
          MVC   N2OUT,MASCARA
          ED    N2OUT,N2P
 ***********************************************************************
-* OPERACAO DE SOMA SP
+* OPERACAO DE SOMA AP
 ***********************************************************************
          ZAP   RESULT,N1P
          AP    RESULT,N2P

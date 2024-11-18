@@ -1,15 +1,17 @@
 ***********************************************************************
 * OBJETIVOS: RECEBE DOIS NUMEROS (NO FORMATO CARACTER) DO SYSIN,
-*            REALIZA A CONVERSAO PARA DECIMAL COMPACTADO (PACK), MULTI-
-*            PLICA (MP), DIVIDE (DP), FORMATA E REALIZA UMA SAIDA (PUT)
-*            EM DATASET, INCLUINDO O RESTO DA DIVISAO
+*            REALIZA A CONVERSAO PARA BINARIO (CVB), REALIZA A CONVER-
+*            SAO PARA BINARIO, SOMA (AR), SUBTRAI (SR), FORMATA E REA-
+*            LIZA UMA SAIDA (PUT) EM DATASET.
+*            OBS.: O PRIMEIRO NUMERO TERA 2 CASAS DECIMAIS E O SEGUNDO
+*                  APENAS UMA.
 ***********************************************************************
 * PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0605 AMODE 31
-ASMP0605 RMODE 24
-ASMP0605 CSECT
-         INICIO ASMP0605,R12
+ASMP0606 AMODE 31
+ASMP0606 RMODE 24
+ASMP0606 CSECT
+         INICIO ASMP0606,R12
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
@@ -20,40 +22,43 @@ ASMP0605 CSECT
 LER_N1   EQU   *
          GET   ENTRADA,DADOIN
          PACK  N1P,DADOIN
-         MVC   N1OUT,=X'40204B2020204B20212060'     ALTERNATIVA LITERAL
+         MVC   N1OUT,=X'4020204B2021206B202060'
          ED    N1OUT,N1P
 LER_N2   EQU   *
          GET   ENTRADA,DADOIN
          PACK  N2P,DADOIN
-         MVC   N2OUT,MASCARA
+         MVC   N2OUT,=X'402020204B2021206B2060'
          ED    N2OUT,N2P
 ***********************************************************************
-* MULTIPLICACAO MP
-***********************************************************************         
+* SOMAR AR
+***********************************************************************
          ZAP   TRAB,N1P
-         MP    TRAB,N2P
+         CVB   R4,TRAB
+         ZAP   TRAB,N2P
+         SRP   TRAB,B'000001',0
+         CVB   R5,TRAB
+         AR    R4,R5
+         CVD   R4,TRAB
          ZAP   RESULT,TRAB
-         MVC   RESULTO,MASCARA
+         MVC   RESULTO,=X'4020204B2021206B202060'
          ED    RESULTO,RESULT
-         MVI   SINAL,C'*'
+         MVI   SINAL,C'+'
          PUT   SAIDA,MSG
 ***********************************************************************
-* DIVISAO DP
-***********************************************************************         
+* SUBTRAIR SR
+***********************************************************************
          ZAP   TRAB,N1P
-         DP    TRAB,N2P
-         MVC   RESULT,TRAB
-         MVC   RESULTO,MASCARA
+         CVB   R4,TRAB
+         ZAP   TRAB,N2P
+         SRP   TRAB,B'000001',0
+         CVB   R5,TRAB
+         SR    R4,R5
+         CVD   R4,TRAB
+         ZAP   RESULT,TRAB
+         MVC   RESULTO,=X'4020204B2021206B202060'
          ED    RESULTO,RESULT
-         MVI   SINAL,C'/'
+         MVI   SINAL,C'-'
          PUT   SAIDA,MSG
-***********************************************************************
-* RESTO DA DIVISAO
-***********************************************************************         
-         MVC   RESULT,TRAB+4
-         MVC   RESTOO,MASCARA
-         ED    RESTOO,RESULT
-         PUT   SAIDA,MSGRESTO
          B     FIMARQ
 ***********************************************************************
 * ROTINA DE ABEND
@@ -63,7 +68,7 @@ ROT_ABND EQU   *
          PUT   SAIDA,MSG
 ***********************************************************************
 * FINALIZA (FECHA) OS DATASETS
-***********************************************************************         
+***********************************************************************
 FIMARQ   EQU   *
          CLOSE SAIDA
          CLOSE ENTRADA
@@ -95,8 +100,7 @@ SINAL    DS    CL1' '
 N2OUT    DS    CL11
          DC    CL1'='
 RESULTO  DS    CL11
-*
-MASCARA  DC    XL11'40204B2020204B20212060'
+         DC    64CL1' '
 *
 SAIDA    DCB   DDNAME=SAIDA,                                           *
                DSORG=PS,                                               *
@@ -115,4 +119,4 @@ ENTRADA  DCB   DDNAME=ENTRADA,                                         *
 *
          LTORG
 *
-         END                                                            
+         END

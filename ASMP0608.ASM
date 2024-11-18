@@ -1,60 +1,59 @@
 ***********************************************************************
-* OBJETIVOS: RECEBE DOIS NUMEROS (NO FORMATO CARACTER) DO SYSIN,
-*            REALIZA A CONVERSAO PARA DECIMAL COMPACTADO (PACK), MULTI-
-*            PLICA (MP), DIVIDE (DP), FORMATA E REALIZA UMA SAIDA (PUT)
-*            EM DATASET, INCLUINDO O RESTO DA DIVISAO
+* OBJETIVOS: REALIZA UM LACO, LENDO TODOS OS REGISTROS DE UM KSAM,
+*            CALCULA A MEDIA E IMPRIME: NOME, MEDIA E SITUACAO DO ALUNO
 ***********************************************************************
 * PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASMP0605 AMODE 31
-ASMP0605 RMODE 24
-ASMP0605 CSECT
-         INICIO ASMP0605,R12
+ASMP0608 AMODE 31
+ASMP0608 RMODE 24
+ASMP0608 CSECT
+         INICIO ASMP0608,R12
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
          OPEN  (SAIDA,OUTPUT)
-         OPEN  (ENTRADA,INPUT)
+         OPEN  (ALUNOS,INPUT)
          LTR   R15,R15
          BNZ   ROT_ABND
-LER_N1   EQU   *
-         GET   ENTRADA,DADOIN
-         PACK  N1P,DADOIN
-         MVC   N1OUT,=X'40204B2020204B20212060'     ALTERNATIVA LITERAL
-         ED    N1OUT,N1P
-LER_N2   EQU   *
-         GET   ENTRADA,DADOIN
-         PACK  N2P,DADOIN
-         MVC   N2OUT,MASCARA
-         ED    N2OUT,N2P
+LER_REG  EQU   *
+         GET   ALUNOS,REGISTRO
+         MVC   MSG+1(40),NOME
+         PACK  N1P,N1
+         PACK  N2P,N2
+         PACK  N3P,N3
+         PACK  N4P,N4
+         PACK  N5P,N5
 ***********************************************************************
-* MULTIPLICACAO MP
-***********************************************************************         
+* CALCULO DA MEDIA
+***********************************************************************
+CALC_MED EQU *
          ZAP   TRAB,N1P
-         MP    TRAB,N2P
+         AP    TRAB,N2P
+         AP    TRAB,N3P
+         AP    TRAB,N4P
+         AP    TRAB,N5P
+         CVB   R4,TRAB
+         SRDA  R4,32                              OU  SRDA R4,B'100000'
+         ZAP   TRAB,=P'5'                         CINCO PARCELAS
+         CVB   R6,TRAB
+         ST    R6,NOTAS
+         D     R4,NOTAS
+         CVD   R5,TRAB
+         ZAP   MEDIA,TRAB
+         SRP   TRAB,2,0
          ZAP   RESULT,TRAB
-         MVC   RESULTO,MASCARA
+         MVC   RESULTO,=X'402021206B2020'
          ED    RESULTO,RESULT
-         MVI   SINAL,C'*'
+         MVC   MSG+41(7),RESULTO
+         CP    MEDIA,=P'0700'                     MEDIA SETE
+         BL    SITREPR
+         MVC   MSG+49(9),=C'APROVADO '
          PUT   SAIDA,MSG
-***********************************************************************
-* DIVISAO DP
-***********************************************************************         
-         ZAP   TRAB,N1P
-         DP    TRAB,N2P
-         MVC   RESULT,TRAB
-         MVC   RESULTO,MASCARA
-         ED    RESULTO,RESULT
-         MVI   SINAL,C'/'
+         B     LER_REG
+SITREPR  EQU *
+         MVC   MSG+49(9),=C'REPROVADO'
          PUT   SAIDA,MSG
-***********************************************************************
-* RESTO DA DIVISAO
-***********************************************************************         
-         MVC   RESULT,TRAB+4
-         MVC   RESTOO,MASCARA
-         ED    RESTOO,RESULT
-         PUT   SAIDA,MSGRESTO
-         B     FIMARQ
+         B     LER_REG
 ***********************************************************************
 * ROTINA DE ABEND
 ***********************************************************************
@@ -63,10 +62,10 @@ ROT_ABND EQU   *
          PUT   SAIDA,MSG
 ***********************************************************************
 * FINALIZA (FECHA) OS DATASETS
-***********************************************************************         
+***********************************************************************
 FIMARQ   EQU   *
          CLOSE SAIDA
-         CLOSE ENTRADA
+         CLOSE ALUNOS
 ***********************************************************************
 * PROCEDIMENTOS DE FINALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
@@ -74,29 +73,31 @@ FIMARQ   EQU   *
 ***********************************************************************
 * DEFINICAO DE AREAS DE DADOS
 ***********************************************************************
-DADOS    DS    0CL80
-DADOIN   DS    CL6
-         DC    74CL1' '
+REGISTRO DS    0CL80
+MATRIC   DS    CL6
+NOME     DS    CL40
+SEXO     DS    CL1
+N1       DS    CL4
+N2       DS    CL4
+N3       DS    CL4
+N4       DS    CL4
+N5       DS    CL4
+         DC    13CL1' '
 *
 N1P      DS    PL4
 N2P      DS    PL4
+N3P      DS    PL4
+N4P      DS    PL4
+N5P      DS    PL4
 RESULT   DS    PL4
 TRAB     DS    PL8
+MEDIA    DS    PL4
+NOTAS    DS    F
 *
-MSGRESTO DS    0CL80
-         DS    CL1' '
-RESTOO   DS    CL11
-         DC    68CL1' '
+RESULTO  DS    CL7
 *
-MSG      DS    0CL80
-         DC    CL1' '
-N1OUT    DS    CL11
-SINAL    DS    CL1' '
-N2OUT    DS    CL11
-         DC    CL1'='
-RESULTO  DS    CL11
-*
-MASCARA  DC    XL11'40204B2020204B20212060'
+MSG      DS    CL80
+         DC    1CL1' '
 *
 SAIDA    DCB   DDNAME=SAIDA,                                           *
                DSORG=PS,                                               *
@@ -105,14 +106,14 @@ SAIDA    DCB   DDNAME=SAIDA,                                           *
                LRECL=80,                                               *
                BLKSIZE=4000
 *
-ENTRADA  DCB   DDNAME=ENTRADA,                                         *
+ALUNOS   DCB   DDNAME=ALUNOS,                                          *
                DSORG=PS,                                               *
                MACRF=GM,                                               *
                RECFM=FB,                                               *
                LRECL=80,                                               *
-               BLKSIZE=4000,                                           *
+               BLKSIZE=27920,                                          *
                EODAD=FIMARQ
 *
          LTORG
 *
-         END                                                            
+         END
