@@ -3,7 +3,7 @@
       ******************************************************************
       *
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. COBPXX01.
+       PROGRAM-ID. COBP0601.
       *
        ENVIRONMENT    DIVISION.
       *
