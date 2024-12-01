@@ -1,38 +1,30 @@
 ***********************************************************************
-* OBJETIVOS: LER UMA LISTA DE CPFS VIA SYSIN, REALIZAR A VERIFICACAO
-*            DOS DIGITOS, INFORNAR SE E VALIDO OU NAO.
-*            FAZ UM LINK A ROTINA ASMSCPF1 PARA REALIZACAO DO CALCULO 
+* OBJETIVOS: LER UMA LISTA DE CPFS VIA ARQUIVO KSAM, REALIZAR O CALCULO
+*            DOS DIGITOS VERIFICADORES, GRAVAR O RESULTADO EM NOVO AR-
+*            QUIVO KSAM.
 ***********************************************************************
 * PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASME0601 AMODE 31
-ASME0601 RMODE 24
-ASME0601 CSECT
-         INICIO ASME0601,R12
+ASME0602 AMODE 31
+ASME0602 RMODE 24
+ASME0602 CSECT
+         INICIO ASME0602,R12
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
-         OPEN  (SAIDA,OUTPUT)
          OPEN  (ENTRADA,INPUT)
+         OPEN  (SAIDA,OUTPUT)
          LTR   R15,R15
          BNZ   ROT_ABND
 *
+         LA    R7,CPF_IN
+*
 LER_CPF  EQU   *
          GET   ENTRADA,CPF_IN
-*         
-         LA    R7,CPF_IN
+*
          LINK  EP=ASMSCPF1
 *
-         CLC   CPF_IN,CPF_OUT
-         BNE   CPF_INV
-         MVC   MSG+1(11),CPF_IN
-         MVC   MSG+13(27),=C'CPF INFORMADO VALIDO.      '
-         B     IMPR_CPF
-CPF_INV  EQU *
-         MVC   MSG+1(11),CPF_IN
-         MVC   MSG+13(27),=C'CPF INFORMADO NAO E VALIDO.'
-*
-IMPR_CPF EQU *
+         MVC   MSG+1(11),CPF_OUT
          PUT   SAIDA,MSG
 *
          B     LER_CPF
@@ -40,7 +32,7 @@ IMPR_CPF EQU *
 * ROTINA DE ABEND
 ***********************************************************************
 ROT_ABND EQU   *
-         MVC   MSG(12),=C'OPEN FALHOU.'
+         MVC   MSG+1(12),=C'OPEN FALHOU.'
          PUT   SAIDA,MSG
 ***********************************************************************
 * FINALIZA (FECHA) OS DATASETS
@@ -78,4 +70,4 @@ SAIDA    DCB   DDNAME=SAIDA,                                           *
 *
          LTORG
 *
-         END ASME0601
+         END ASME0602

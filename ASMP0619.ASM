@@ -1,53 +1,59 @@
 ***********************************************************************
-* OBJETIVOS: LER UMA LISTA DE CPFS VIA SYSIN, REALIZAR A VERIFICACAO
-*            DOS DIGITOS, INFORNAR SE E VALIDO OU NAO.
-*            FAZ UM LINK A ROTINA ASMSCPF1 PARA REALIZACAO DO CALCULO 
+* OBJETIVOS: LER UMA LISTA DE CPFS E UMA LISTA DE ALUNOS, DE ARQUIVOS
+*            KSAM DISTINTOS. TROCAR A CHAVE DO REGISTRO DE  ALUNO  DA
+*            MATRICULA PELO CPF CALCULADO. GRAVA O  RESULTADO  EM  UM
+*            NOVO ARQUIVO KSAM.
 ***********************************************************************
 * PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
-ASME0601 AMODE 31
-ASME0601 RMODE 24
-ASME0601 CSECT
-         INICIO ASME0601,R12
+ASMP0619 AMODE 31
+ASMP0619 RMODE 24
+ASMP0619 CSECT
+         INICIO ASMP0619,R12
 ***********************************************************************
 * CORPO DO PROGRAMA
 ***********************************************************************
-         OPEN  (SAIDA,OUTPUT)
-         OPEN  (ENTRADA,INPUT)
+         OPEN  (CPFSIN,INPUT)
          LTR   R15,R15
          BNZ   ROT_ABND
+         OPEN  (ALUNOS,INPUT)
+         LTR   R15,R15
+         BNZ   ROT_ABND
+         OPEN  (SAIDA,OUTPUT)
 *
-LER_CPF  EQU   *
-         GET   ENTRADA,CPF_IN
-*         
          LA    R7,CPF_IN
+*
+LER_REGS EQU   *
+         GET   CPFSIN,CPF_IN
+         GET   ALUNOS,REG_IN
+*
          LINK  EP=ASMSCPF1
 *
-         CLC   CPF_IN,CPF_OUT
-         BNE   CPF_INV
-         MVC   MSG+1(11),CPF_IN
-         MVC   MSG+13(27),=C'CPF INFORMADO VALIDO.      '
-         B     IMPR_CPF
-CPF_INV  EQU *
-         MVC   MSG+1(11),CPF_IN
-         MVC   MSG+13(27),=C'CPF INFORMADO NAO E VALIDO.'
+         MVC   OUT_CPF,CPF_OUT
+         MVC   OUT_NOME,IN_NOME
+         MVC   OUT_SEXO,IN_SEXO
+         MVC   OUT_N1,IN_N1
+         MVC   OUT_N2,IN_N2
+         MVC   OUT_N3,IN_N3
+         MVC   OUT_N4,IN_N4
+         MVC   OUT_N5,IN_N5
 *
-IMPR_CPF EQU *
-         PUT   SAIDA,MSG
+         PUT   SAIDA,REG_OUT
 *
-         B     LER_CPF
+         B     LER_REGS
 ***********************************************************************
 * ROTINA DE ABEND
 ***********************************************************************
 ROT_ABND EQU   *
-         MVC   MSG(12),=C'OPEN FALHOU.'
+         MVC   MSG+1(12),=C'OPEN FALHOU.'
          PUT   SAIDA,MSG
 ***********************************************************************
 * FINALIZA (FECHA) OS DATASETS
 ***********************************************************************
 FIMARQ   EQU   *
+         CLOSE CPFSIN
+         CLOSE ALUNOS
          CLOSE SAIDA
-         CLOSE ENTRADA
 ***********************************************************************
 * PROCEDIMENTOS DE FINALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
 ***********************************************************************
@@ -55,27 +61,48 @@ FIMARQ   EQU   *
 ***********************************************************************
 * DEFINICAO DE AREAS DE DADOS
 ***********************************************************************
+REG_IN   DS    0CL80
+IN_MATR  DS    CL6
+IN_NOME  DS    CL40
+IN_SEXO  DS    CL11
+IN_N1    DS    CL4
+IN_N2    DS    CL4
+IN_N3    DS    CL4
+IN_N4    DS    CL4
+IN_N5    DS    CL4
+         DC    13CL1' '
+*
+REG_OUT  DS    0CL80
+OUT_CPF  DS    CL11
+OUT_NOME DS    CL40
+OUT_SEXO DS    CL11
+OUT_N1   DS    CL4
+OUT_N2   DS    CL4
+OUT_N3   DS    CL4
+OUT_N4   DS    CL4
+OUT_N5   DS    CL4
+         DC    8CL1' '
+*
 CPFS     DS    0CL22
 CPF_IN   DS    CL11
 CPF_OUT  DS    CL11
 *
 MSG      DS    CL80
 *
-ENTRADA  DCB   DDNAME=ENTRADA,                                         *
+CPFSIN   DCB   DDNAME=CPFSIN,                                          *
                DSORG=PS,                                               *
                MACRF=GM,                                               *
-               RECFM=FB,                                               *
-               LRECL=80,                                               *
-               BLKSIZE=27920,                                          *
+               EODAD=FIMARQ
+*
+ALUNOS   DCB   DDNAME=ALUNOS,                                          *
+               DSORG=PS,                                               *
+               MACRF=GM,                                               *
                EODAD=FIMARQ
 *
 SAIDA    DCB   DDNAME=SAIDA,                                           *
                DSORG=PS,                                               *
-               MACRF=PM,                                               *
-               RECFM=FBA,                                              *
-               LRECL=80,                                               *
-               BLKSIZE=4000
+               MACRF=PM
 *
          LTORG
 *
-         END ASME0601
+         END ASMP0619
