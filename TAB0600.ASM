@@ -1,0 +1,8 @@
+* TAB0600
+TAB_SIGS DC C'SIG0PROG00'                              TABELA DE SIGLAS
+         DC C'SIG1PROG01'
+         DC C'SIG2PROG02'
+         DC C'SIG3PROG03'
+         DC C'SIG4PROG04'
+         DC C'SIG5PROG05'
+QTD_SIGS EQU (*-TAB_SIGS)/4

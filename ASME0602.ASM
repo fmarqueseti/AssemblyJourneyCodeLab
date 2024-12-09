@@ -51,7 +51,7 @@ CPFS     DS    0CL22
 CPF_IN   DS    CL11
 CPF_OUT  DS    CL11
 *
-MSG      DS    CL80
+MSG      DS    80CL1' '
 *
 ENTRADA  DCB   DDNAME=ENTRADA,                                         *
                DSORG=PS,                                               *
@@ -63,10 +63,7 @@ ENTRADA  DCB   DDNAME=ENTRADA,                                         *
 *
 SAIDA    DCB   DDNAME=SAIDA,                                           *
                DSORG=PS,                                               *
-               MACRF=PM,                                               *
-               RECFM=FBA,                                              *
-               LRECL=80,                                               *
-               BLKSIZE=4000
+               MACRF=PM
 *
          LTORG
 *
