@@ -32,6 +32,12 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 - **[ASME0604.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0603.ASM)**: **EXERCÍCIO** - Comportamento similar ao [ASMP0621.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0620.ASM), exibindo a sigla e a descrição.
 - **[ASMP0622.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0622.ASM)**: Ler o arquivo de alunos e gravar em um arquivo VSAM.
 - **[ASME0605.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0605.ASM)**:  **EXERCÍCIO** - Comportamento similar ao [ASMP0622.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0622.ASM), verificando se o CPF é válido, antes de gravar no arquivo.
+- **[ASMP0623.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0623.ASM)**: Buscar por registro em arquivo VSAM e realizar atualização (UPDATE).
+- **[ASMP0624.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0624.ASM)**: Buscar por registro em arquivo VSAM e realizar eliminaçãoo (ERASE).
+- **[ASMP0625.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0625.ASM)**: Obtenção do timestamp do sistema.
+- **[RELALU06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELALU06.ASM)**: Layout do relatório de alunos.
+- **[ASMP0626.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0626.ASM)**: Elaboração de relatório, a partir dos dados lidos do arquivo de alunos (VSAM).
+- **[ASME0606.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0606.ASM)**: Elaboração de relatório, a partir dos dados lidos do arquivo de alunos (VSAM), atualizando o arquivo (média de notas).
 
 ## Como Usar
 
@@ -76,6 +82,12 @@ Welcome to my repository of Assembly codes developed during the "Assembly for Ma
 - **[ASME0604.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0603.ASM)**: **EXERCISE** - Similar behavior as [ASMP0621.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0620.ASM), displaying the acronym and its description.  
 - **[ASMP0622.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0622.ASM)**: Reads a student file and writes it to a VSAM file.  
 - **[ASME0605.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0605.ASM)**: **EXERCISE** - Similar behavior as [ASMP0622.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0622.ASM), verifying the validity of the CPF digits before writing to the file.
+- **[ASMP0623.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0623.ASM)**: Search for record in VSAM file and perform update (UPDATE).
+- **[ASMP0624.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0624.ASM)**: Search for record in VSAM file and perform deletion (ERASE).
+- **[ASMP0625.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0625.ASM)**: Obtaining system timestamp.
+- **[RELALU06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELALU06.ASM)**: Report layout.
+- **[ASMP0626.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0626.ASM)**: Generating a report using data read from the student file (VSAM).
+- **[ASME0606.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0606.ASM)**: Generating a report using data read from the student file (VSAM), updating the VSAM file (grade average).
 
 ## How to Use
 
