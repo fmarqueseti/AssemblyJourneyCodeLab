@@ -38,6 +38,12 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 - **[RELALU06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELALU06.ASM)**: Layout do relatório de alunos.
 - **[ASMP0626.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0626.ASM)**: Elaboração de relatório, a partir dos dados lidos do arquivo de alunos (VSAM).
 - **[ASME0606.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0606.ASM)**: Elaboração de relatório, a partir dos dados lidos do arquivo de alunos (VSAM), atualizando o arquivo (média de notas).
+- **[BOOK01.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/BOOK01.ASM)**: Book do layout do arquivo VSAM de funcionários.
+- **[RELFUN06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELFUN06.ASM)**: Layout do relatório de funcionários.
+- **[ASME0607.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0607.ASM)**: Elaboração de relatório, a partir dos dados lidos do arquivo de funcionparios (VSAM).
+- **[ASMP0627.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0627.ASM)**: Ilustra como obter a data e hora de compilação.
+- **[ASMP0628.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0628.ASM)**: Recebe um parâmetro do JCL, imprime na saída se começar por uma letra.
+- **[ASME0608.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0608.ASM)**: Recebe, via parâmetro do JCL, uma taxa de reajuste de salários. Aplicará a taxa de reajuste aos salários dos funcionários admitidos a partir de 2020, atualizando o arquivo de funcionários (VSAM).
 
 ## Como Usar
 
@@ -88,6 +94,12 @@ Welcome to my repository of Assembly codes developed during the "Assembly for Ma
 - **[RELALU06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELALU06.ASM)**: Report layout.
 - **[ASMP0626.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0626.ASM)**: Generating a report using data read from the student file (VSAM).
 - **[ASME0606.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0606.ASM)**: Generating a report using data read from the student file (VSAM), updating the VSAM file (grade average).
+- **[BOOK01.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/BOOK01.ASM)**: Book for the layout of the employee VSAM file.
+- **[RELFUN06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELFUN06.ASM)**: Layout for the employee report.
+- **[ASME0607.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0607.ASM)**: Generates a report based on data read from the employee file (VSAM).
+- **[ASMP0627.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0627.ASM)**: Demonstrates how to obtain the compilation date and time.
+- **[ASMP0628.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0628.ASM)**: Accepts a parameter from JCL and prints it to the output if it starts with a letter.
+- **[ASME0608.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0608.ASM)**: Receives a salary adjustment rate via a JCL parameter. It applies the adjustment rate to the salaries of employees hired from 2020 onwards, updating the employee file (VSAM).
 
 ## How to Use
 
