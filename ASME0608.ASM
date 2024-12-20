@@ -1,55 +1,53 @@
 ***********************************************************************
-* OBJETIVOS: RECEBE, VIA PARM JCL, UM CPF, REALIZA UMA BUSCA NO ARQUIVO
-*            VSAM, SE ENCONTRAR, CALCULA A MEDIA ARITMETICA DAS NOTAS E
-*            REALIZA A ATUALIZACAO DO ARQUIVO VSAM (UPDATE).
+* OBJETIVOS: RECEBE, VIA PARM JCL, UMA TAXA DE REAJUSTE DOS SALARIOS DE
+*            ALGUNS FUNCISONARIOS (AQUELES ADMITIDOS A PARTIR DE 2020).
+*            REALIZAR O CALCULO E ATUALIZAR NO VSAM O VALOR DO SALARIO
+*            ATUALIZADO.
 ***********************************************************************
-* PROCEDIMENTOS DE INICIALIZACAO DO PROGRAMA (LINKAGE CONVENTION)
-***********************************************************************
-ASMP0623 AMODE 31
-ASMP0623 RMODE 24
-ASMP0623 CSECT
-         INICIO ASMP0623,R12
+ASME0608 AMODE 31
+ASME0608 RMODE 24
+ASME0608 CSECT
+         INICIO ASME0608,R12
 ***********************************************************************
 * CORPO DO PROGRAMA
-***********************************************************************
+**********************************************************************
          L     R3,0(,R1)
          LA    R4,2(,R3)
-         MVC   CPFPARM,0(R4)
+         MVC   TAXA,0(R4)
+         PACK  TAXAP,TAXA
 *
          OPEN  (SAIDA,OUTPUT)
-         OPEN  ALUNOS
+         OPEN  FUNCIS
          LTR   R15,R15
          BNZ   ERROVSAM                                   ERRO O (OPEN)
 LER_ARQ  EQU   *
-         MVC   CPF,CPFPARM
          GET   RPL=RPLVSAM
          LTR   R15,R15
-         BNZ   ERRGVSAM                                   ERRO G (GET)
-         PACK  N1P,N1
-         PACK  N2P,N2
-         PACK  N3P,N3
-         PACK  N4P,N4
-         PACK  N5P,N5
-CALC_MED EQU *
-         ZAP   TRAB,N1P
-         AP    TRAB,N2P
-         AP    TRAB,N3P
-         AP    TRAB,N4P
-         AP    TRAB,N5P
-         CVB   R4,TRAB
-         SRDA  R4,32
-         ZAP   TRAB,=P'5'
-         CVB   R6,TRAB
-         ST    R6,NOTAS
-         D     R4,NOTAS
-         CVD   R5,TRAB
-         ZAP   RESULT,TRAB
-         UNPK  MEDIA,RESULT
-         OI    MEDIA+3,X'F0'
+         BNZ   FIMPROG
+***********************************************************************
+* TESTANDO A DATA DE ADMISSAO
+***********************************************************************         
+         MVC   ANO_ADM(4),DT_ADM+4
+         PACK  ANO_ADMP,ANO_ADM
+         CP    ANO_ADMP,=P'2020'
+         BL    LER_ARQ
+***********************************************************************
+* CALCULO DO REAJUSTE
+***********************************************************************
+         PACK  SALARIOP,SALARIO
+         ZAP   TRAB,SALARIOP
+         MP    TRAB,TAXAP
+         SRP   TRAB,64-4,0
+         AP    TRAB,SALARIOP
+         UNPK  SALARIO,TRAB
+         OI    SALARIO+6,X'F0'
          PUT   RPL=RPLVSAM
          LTR   R15,R15
          BNZ   ERRPVSAM                                    ERRO P (PUT)
-         B     FIMPROG
+         B     LER_ARQ
+***********************************************************************
+* ROTINAS DE ABEND
+***********************************************************************
 ERRGVSAM EQU   *
          MVC   MSG(24),=C'REGISTRO NAO ENCONTRADO.'
          PUT   SAIDA,MSG
@@ -69,36 +67,26 @@ FIMPROG  EQU   *
 ***********************************************************************
 * DEFINICAO DE AREAS DE DADOS
 ***********************************************************************
+*
 MSG      DS    CL132
 *
-N1P      DS    PL4
-N2P      DS    PL4
-N3P      DS    PL4
-N4P      DS    PL4
-N5P      DS    PL4
-TRAB     DS    PL8
-RESULT   DS    PL4
-NOTAS    DS    F
-CPFPARM  DS    CL11
+TAXA     DS    CL4
+TAXAP    DS    PL4
+SALARIOP DS    PL4
 *
-REG_VSAM DS    0CL80
-CPF      DS    CL11
-NOME     DS    CL40
-SEXO     DS    CL1
-N1       DS    CL4
-N2       DS    CL4
-N3       DS    CL4
-N4       DS    CL4
-N5       DS    CL4
-MEDIA    DS    CL4
-         DC    4CL1' '
+ANO_ADM  DS    CL4
+ANO_ADMP DS    PL4
+*
+TRAB     DS    PL8
+*
+         COPY  BOOK01
 TAM_REG  EQU   *-REG_VSAM
 *
-ALUNOS   ACB   DDNAME=ALUNOS,                                          *
+FUNCIS   ACB   DDNAME=FUNCIS,                                          *
                AM=VSAM,                                                *
                MACRF=(KEY,SEQ,OUT)
 *
-RPLVSAM  RPL   ACB=ALUNOS,                                             *
+RPLVSAM  RPL   ACB=FUNCIS,                                             *
                OPTCD=(KEY,SEQ,UPD),                                    *
                ARG=CPF,                                                *
                AREA=REG_VSAM,                                          *
@@ -115,4 +103,4 @@ SAIDA    DCB   DDNAME=SAIDA,                                           *
 *
          LTORG
 *
-         END ASMP0623
+         END ASME0608
