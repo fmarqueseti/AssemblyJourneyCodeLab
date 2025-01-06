@@ -44,6 +44,9 @@ Bem-vindo ao meu repositório de códigos Assembly desenvolvidos durante o curso
 - **[ASMP0627.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0627.ASM)**: Ilustra como obter a data e hora de compilação.
 - **[ASMP0628.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0628.ASM)**: Recebe um parâmetro do JCL, imprime na saída se começar por uma letra.
 - **[ASME0608.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0608.ASM)**: Recebe, via parâmetro do JCL, uma taxa de reajuste de salários. Aplicará a taxa de reajuste aos salários dos funcionários admitidos a partir de 2020, atualizando o arquivo de funcionários (VSAM).
+- **[BOOK02.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/BOOK02.ASM)**: Copybook do layout do arquivo de responsáveis.
+- **[RELPF06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELPF06.ASM)**: Layout do relatório da prova final.
+- **[ASMPF006.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELPF06.ASM)**: Implementação da prova final.
 
 ## Como Usar
 
@@ -100,6 +103,9 @@ Welcome to my repository of Assembly codes developed during the "Assembly for Ma
 - **[ASMP0627.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0627.ASM)**: Demonstrates how to obtain the compilation date and time.
 - **[ASMP0628.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASMP0628.ASM)**: Accepts a parameter from JCL and prints it to the output if it starts with a letter.
 - **[ASME0608.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/ASME0608.ASM)**: Receives a salary adjustment rate via a JCL parameter. It applies the adjustment rate to the salaries of employees hired from 2020 onwards, updating the employee file (VSAM).
+- **[BOOK02.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/BOOK02.ASM)**: Copybook for the student's file layout.
+- **[RELPF06.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELPF06.ASM)**: Report layout.
+- **[ASMPF006.ASM](https://github.com/fmarqueseti/AssemblyJourneyCodeLab/blob/main/RELPF06.ASM)**: Final exam implementation.
 
 ## How to Use
 
